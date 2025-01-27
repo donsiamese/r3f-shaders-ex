@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "./pages/page.css";
+
+:root {
+  --dark: #1b1a1d;
+  --white: #d6d2cf;
+  --accent: #5b6786;
+  --active: #fd5982;
+  --bg: #afafaf;
+  --dark-rgb: 27, 26, 29;
+  --white-rgb: 214, 210, 207;
+  --accent-rgb: 91, 103, 134;
+  --bg-rgb: 203, 144, 165;
+
+  /* z-index */
+  --z-canvas: 0;
+  --z-default: 1;
+  --z-fullscreen-menu: 2;
+  --z-header: 3;
+  --z-modal: 4;
+  --z-info: 5;
+}
+
+html,
+body,
+#root {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "satoshi";
+  color: var(--dark);
+}
+
+.experiment {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.experiment > h1 {
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+}
+.code {
+  overflow-y: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 50%;
+  padding: 2rem;
+  z-index: var(--z-canvas);
+}
+
+pre,
+code {
+  display: block;
+  width: 100%;
+  white-space: pre-wrap;
+}
+
+.canvas {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100vh;
+}
+
+Canvas {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: var(--z-canvas);
+}
+
+.App.coodeMenuIsActive .code {
+  transform: translateX(-50%);
+  padding: 0;
+}
+
+.App.coodeMenuIsActive .canvas,
+.App.coodeMenuIsActive canvas {
+  width: 100vw !important;
+}
