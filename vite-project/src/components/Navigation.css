@@ -2,6 +2,7 @@ nav {
   position: fixed;
   padding: 2rem;
   width: 30%;
+  max-width: 400px;
   height: 100vh;
   top: 0;
   right: 0;
@@ -18,4 +19,9 @@ nav {
 
 .menuIsActive nav li {
   margin: 0.7rem 0;
+}
+
+.menuIsActive nav li:hover {
+  cursor: pointer;
+  color: var(--active);
 }

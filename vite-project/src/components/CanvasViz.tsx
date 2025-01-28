@@ -1,11 +1,11 @@
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
-import { useState, useRef, useMemo, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import fragmentShader from "../shaders/experiment1/fragment.glsl";
-import vertexShader from "../shaders/experiment1/vertex.glsl";
+import fragmentShader from "../shaders/introduction/fragment.glsl";
+import vertexShader from "../shaders/introduction/vertex.glsl";
 import CustomShaderMaterial from "three-custom-shader-material";
 import { useControls } from "leva";
 

@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import "./Navigation.css";
 
-const Navigation = () => {
+const Navigation = ({ showDocumentation, setShowDocumentation }) => {
   return (
     <nav className="flex flex-col menu_panel">
       <ul>
-        <li>
-          <Link to="/">Experiment 1</Link>
+        <li onClick={() => setShowDocumentation(!showDocumentation)}>
+          <span>Documentation</span>
         </li>
         <li>
-          <Link to="/experiment2">Experiment 2</Link>
+          <Link to="/">Introduction</Link>
         </li>
       </ul>
     </nav>

@@ -2,7 +2,3 @@
   position: relative;
   color: var(--white);
 }
-
-.GLSLCodeBlock button.inactive {
-  background-color: rgba(var(--accent-rgb), 0.5);
-}

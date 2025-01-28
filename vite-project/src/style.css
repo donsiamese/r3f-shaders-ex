@@ -17,8 +17,8 @@
   --z-default: 1;
   --z-fullscreen-menu: 2;
   --z-header: 3;
-  --z-modal: 4;
-  --z-info: 5;
+  --z-modal: 5;
+  --z-info: 6;
 }
 
 html,
@@ -31,6 +31,15 @@ body,
   padding: 0;
   font-family: "satoshi";
   color: var(--dark);
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .experiment {
@@ -86,7 +95,19 @@ Canvas {
   padding: 0;
 }
 
+.App.documentationIsActive .Documentation {
+  transform: translateX(-100%);
+}
+
 .App.coodeMenuIsActive .canvas,
 .App.coodeMenuIsActive canvas {
   width: 100vw !important;
+}
+
+button.show-code.inactive {
+  background-color: rgba(var(--accent-rgb), 0.5);
+}
+
+.leva-c-kWgxhW-bCBHqk-fill-false {
+  z-index: 1 !important;
 }
