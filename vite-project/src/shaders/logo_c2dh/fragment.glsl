@@ -42,7 +42,7 @@ void main() {
 
     // Fresnel
     vec3 viewDirection = normalize(vPosition - cameraPosition);
-    float fresnel = dot(viewDirection, min(normal, 0.2)) + 1.0;
+    float fresnel = dot(viewDirection,normal) + 0.5;
     fresnel = pow(fresnel, 2.0);
 
     // Falloff
