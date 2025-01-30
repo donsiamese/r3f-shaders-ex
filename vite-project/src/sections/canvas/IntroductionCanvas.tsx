@@ -1,11 +1,11 @@
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import fragmentShader from "../shaders/introduction/fragment.glsl";
-import vertexShader from "../shaders/introduction/vertex.glsl";
+import fragmentShader from "../../shaders/introduction/fragment.glsl";
+import vertexShader from "../../shaders/introduction/vertex.glsl";
 import CustomShaderMaterial from "three-custom-shader-material";
 import { useControls } from "leva";
 
@@ -14,13 +14,6 @@ function CanvasViz() {
     const { nodes, materials } = useGLTF("./ocean_pillar.glb");
     const meshRef = useRef();
     console.log("Gltf", nodes);
-
-    // Example: Move the mesh using translateZ after mounting
-    useEffect(() => {
-      if (meshRef.current) {
-        meshRef.current.translateY(0); // Moves the mesh 1 unit along the Z-axis
-      }
-    }, []);
 
     // Stripes control
     const stripesControl = useControls("uStripes", {

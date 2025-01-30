@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Introduction from "./pages/Introduction";
+import Page from "./pages/Page";
 import { useState } from "react";
 import Button from "./components/Button";
 import { Menu, CodeBrackets, Xmark } from "iconoir-react";
@@ -70,8 +70,8 @@ function App() {
       </Button>
 
       <Routes>
-        <Route path="/" element={<Introduction />} />
-        {/* <Route path="/experiment2" element={<Experiment2 />} /> */}
+        <Route path="/" element={<Page.Introduction />} />
+        <Route path="/logoc2dh" element={<Page.LogoC2dh />} />
       </Routes>
     </div>
   );

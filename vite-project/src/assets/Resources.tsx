@@ -15,6 +15,18 @@ const Resources = () => {
           </li>
         ))}
       </ul>
+      <p>GLSL Graphs</p>
+      <ul className="Functions flex flex-col flex-wrap">
+        {resourcesData.resources.graphs.map((func) => (
+          <li key={func.name}>
+            <a href={func.link} target="_blank">
+              {func.name}
+            </a>
+            {resourcesData.resources.graphs.indexOf(func) !==
+              resourcesData.resources.graphs.length - 1 && ","}
+          </li>
+        ))}
+      </ul>
       <p>Noise Generators</p>
       <ul className="Functions flex flex-col flex-wrap">
         {resourcesData.resources.noises.map((func) => (

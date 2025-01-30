@@ -15,6 +15,33 @@
         "name": "😍😍😍 Book of shaders documentation",
         "link": "https://thebookofshaders.com/",
         "description": "A gentle introduction to GLSL."
+      },
+      {
+        "name": "Shader Toy",
+        "link": "https://www.shadertoy.com/",
+        "description": "A platform to share and learn shaders."
+      },
+      {
+        "name": "GM Shaders / Tips and Tricks",
+        "link": " https://gmshaders.com/tutorials/tips_and_tricks/",
+        "description": "A collection of tips and tricks for shader development."
+      },
+      {
+        "name": "The Ultimate Shader Editor.",
+        "link": "https://nodetoy.co/",
+        "description": "A shader editor with a node-based interface."
+      }
+    ],
+    "graphs": [
+      {
+        "name": "GLSL Grapher",
+        "link": "https://fordhurley.com/glsl-grapher/",
+        "description": "A tool to visualize GLSL code."
+      },
+      {
+        "name": "Bruno's Graph Calculator",
+        "link": "https://www.desmos.com/calculator",
+        "description": "A graphing calculator."
       }
     ],
     "noises": [

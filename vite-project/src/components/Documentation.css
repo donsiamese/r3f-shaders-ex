@@ -22,6 +22,11 @@
   font-size: 1.5rem;
 }
 
+.Documentation h3 {
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+}
+
 .Documentation a {
   color: var(--active);
 }

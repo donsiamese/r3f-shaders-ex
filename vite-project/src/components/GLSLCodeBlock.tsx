@@ -28,9 +28,7 @@ const GLSLCodeBlock = ({
           {glslCode ? (
             <div className="mt-5">
               {showTitile ? null : (
-                <h2 className="mb-2">
-                  {glslTitle ? glslTitle : "Vertex Shader"}
-                </h2>
+                <h3 className="mb-2">{glslTitle ? glslTitle : null}</h3>
               )}
 
               <SyntaxHighlighter
@@ -48,9 +46,7 @@ const GLSLCodeBlock = ({
           {typeScriptCode ? (
             <div className="mt-5">
               {showTitile ? null : (
-                <h2 className="mb-2">
-                  {tsTitle ? tsTitle : "Typescript Code"}
-                </h2>
+                <h3 className="mb-2">{tsTitle ? tsTitle : null}</h3>
               )}
               <SyntaxHighlighter
                 language="typescript"

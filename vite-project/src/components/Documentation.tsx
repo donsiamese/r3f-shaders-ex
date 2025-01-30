@@ -2,6 +2,7 @@ import GLSLCodeBlock from "../components/GLSLCodeBlock";
 import values from "../assets/variables.glsl";
 import Resources from "../assets/Resources";
 import Functions from "../assets/Functions";
+import TPosition from "../assets/tips/TPosition.tsx?raw";
 import "./Documentation.css";
 
 const Documentation = () => {
@@ -15,12 +16,8 @@ const Documentation = () => {
         <p>The most used functions</p>
         <Functions />
         <GLSLCodeBlock glslCode={values} glslTitle="Variables" />
-        {/* <h2>Variables</h2>
-        <GLSLCodeBlock vertexShader={values} showTitile={false} />
-        <h2>Variables</h2>
-        <GLSLCodeBlock vertexShader={values} showTitile={false} />
-        <h2>Variables</h2>
-        <GLSLCodeBlock vertexShader={values} showTitile={false} /> */}
+        <h2>Tips</h2>
+        <GLSLCodeBlock typeScriptCode={TPosition} tsTitle="Position" />
       </div>
     </div>
   );
