@@ -5,6 +5,7 @@ import {
   shaderMaterial,
   PerspectiveCamera,
   Environment,
+  Html,
 } from "@react-three/drei";
 import { useRef, FC } from "react";
 import { useGLTF } from "@react-three/drei";
@@ -59,8 +60,11 @@ const CubeAnnualReport: FC<{ position: [number, number, number] }> = (
 ) => {
   const { nodes, materials } = useGLTF("/cubeAnnualReport.glb");
   const logoMaterial = useRef();
+  const cubeMaterial = useRef();
 
-  materials.White.roughness = 0.1;
+  materials.White.roughness = 1;
+  materials.White.transparent = true;
+  materials.White.opacity = 0.8;
 
   const { uColor } = useControls({
     uColor: "#70c1ff", // Default color
@@ -70,37 +74,25 @@ const CubeAnnualReport: FC<{ position: [number, number, number] }> = (
     if (logoMaterial.current) {
       logoMaterial.current.uTime += delta;
       logoMaterial.current.uColor = new THREE.Color(uColor);
+      cubeMaterial.current.uTime += delta;
+      cubeMaterial.current.uColor = new THREE.Color(uColor);
     }
   });
 
   return (
-    <group scale={0.5} position={[0, -1, 0]} {...props} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes["2022ARai-White"].geometry}
-        material={materials.White}
-        position={[1.005, 1.125, 0]}
-        rotation={[Math.PI / 2, 0, -Math.PI / 2]}
-        scale={0.291}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Curve.geometry}
-        material={materials.White}
-        position={[0, 1.051, 0.956]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={9.193}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes["2022ARai-Red"].geometry}
-        position={[0.001, 1.119, 0.002]}
-      >
+    <group scale={0.5} position={[0, 0, 0]} {...props} dispose={null}>
+      <mesh castShadow geometry={nodes.Cube.geometry}>
+        <logoMaterial ref={cubeMaterial} />
+      </mesh>
+      <mesh castShadow geometry={nodes.text.geometry}>
         <logoMaterial ref={logoMaterial} />
       </mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.text.geometry}
+        material={materials.White}
+      />
     </group>
   );
 };
@@ -128,25 +120,13 @@ const CanvasViz: FC = () => {
       gl={{ pixelRatio: Math.min(window.devicePixelRatio, 2), antialias: true }}
     >
       <color attach="background" args={["black"]} />
-      <directionalLight
-        shadow-mapSize={1024}
-        shadow-normalBias={0.03}
-        castShadow
-        position={[-1.5, 0, 3]}
-        intensity={9}
-      />
-      <directionalLight
-        shadow-mapSize={1024}
-        shadow-normalBias={0.03}
-        castShadow
-        position={[1.5, 0, -3]}
-        intensity={9}
-      />
+      <directionalLight position={[-3, 0, 0]} intensity={9} />
+      <directionalLight position={[3, 0, 0]} intensity={9} />
+      <directionalLight position={[0, 0, -3]} intensity={9} />
+      <directionalLight position={[0, 0, 3]} intensity={9} />
 
       {selectedObject === "LogoC2dh" && <LogoC2dh position={[0, 0, 0]} />}
-      {selectedObject === "CubeAnnualReport" && (
-        <CubeAnnualReport position={[0, -0.5, 0]} />
-      )}
+      {selectedObject === "CubeAnnualReport" && <CubeAnnualReport />}
       <OrbitControls
         minPolarAngle={Math.PI / 2}
         maxPolarAngle={Math.PI / 2}

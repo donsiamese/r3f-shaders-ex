@@ -42,7 +42,7 @@ void main() {
 
     // Fresnel
     vec3 viewDirection = normalize(vPosition - cameraPosition);
-    float fresnel = dot(viewDirection,normal) + 0.5;
+    float fresnel = dot(viewDirection, normal) + 0.85;
     fresnel = pow(fresnel, 2.0);
 
     // Falloff
@@ -50,7 +50,7 @@ void main() {
 
     // Holographic
     float holographic = stripes * fresnel;
-    holographic += fresnel * 1.25;
+    holographic += fresnel * 1.7;
     holographic *= falloff;
 
     // Get the interpolated color based on uTime

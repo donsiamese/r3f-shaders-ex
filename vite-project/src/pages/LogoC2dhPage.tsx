@@ -14,6 +14,7 @@ const LogoC2dh = () => {
         CanvasVizRaw={CanvasVizRaw}
       />
       <div className="canvas">
+        <span className="bg-text">COMMING SOON</span>
         <CanvasViz />
       </div>
     </div>
