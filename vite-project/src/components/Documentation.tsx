@@ -1,5 +1,5 @@
 import GLSLCodeBlock from "../components/GLSLCodeBlock";
-import values from "../assets/variables.glsl";
+import values from "../assets/variables.glsl?raw";
 import Resources from "../assets/Resources";
 import Functions from "../assets/Functions";
 import TPosition from "../assets/tips/TPosition.tsx?raw";

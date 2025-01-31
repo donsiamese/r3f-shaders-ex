@@ -3,6 +3,11 @@ import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import useGlobalState from "./store";
 import "./GLSLCodeBlock.css";
 
+interface GlobalState {
+  showGLSL: boolean;
+  showTS: boolean;
+}
+
 interface GLSLCodeBlockProps {
   glslCode?: string;
   typeScriptCode?: string;
@@ -20,7 +25,7 @@ const GLSLCodeBlock = ({
   glslTitle,
   tsTitle,
 }: GLSLCodeBlockProps) => {
-  const { showGLSL, showTS } = useGlobalState();
+  const { showGLSL, showTS } = useGlobalState() as GlobalState;
   return (
     <section className={`GLSLCodeBlock ${className}`}>
       {showGLSL && (

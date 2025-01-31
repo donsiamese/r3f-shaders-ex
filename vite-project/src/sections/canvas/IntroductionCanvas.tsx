@@ -4,15 +4,14 @@ import { Environment, OrbitControls } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import fragmentShader from "../../shaders/introduction/fragment.glsl";
-import vertexShader from "../../shaders/introduction/vertex.glsl";
+import fragmentShader from "../../shaders/introduction/fragment.glsl?raw";
+import vertexShader from "../../shaders/introduction/vertex.glsl?raw";
 import CustomShaderMaterial from "three-custom-shader-material";
 import { useControls } from "leva";
 
 function CanvasViz() {
   const OceanPillar = (props) => {
     const { nodes, materials } = useGLTF("./ocean_pillar.glb");
-    const meshRef = useRef();
     console.log("Gltf", nodes);
 
     // Stripes control
@@ -67,7 +66,6 @@ function CanvasViz() {
     return (
       <group {...props} dispose={null}>
         <mesh
-          ref={meshRef}
           castShadow
           receiveShadow
           geometry={nodes.ocean.geometry}

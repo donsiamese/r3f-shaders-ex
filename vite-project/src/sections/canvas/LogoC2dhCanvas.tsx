@@ -4,26 +4,27 @@ import {
   OrbitControls,
   shaderMaterial,
   PerspectiveCamera,
-  Environment,
-  Html,
 } from "@react-three/drei";
 import { useRef, FC } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useControls } from "leva";
-import fragmentShaderLogo from "../../shaders/logo_c2dh/fragment.glsl";
+import fragmentShaderLogo from "../../shaders/logo_c2dh/fragment.glsl?raw";
 import vertexShaderLogo from "../../shaders/logo_c2dh/vertex.glsl";
 
 // Define the shader material
-const LogoMaterial = shaderMaterial({
-  uTime: 0,
-  uColor: new THREE.Color("#70c1ff"),
-  vertexShader: vertexShaderLogo,
-  fragmentShader: fragmentShaderLogo,
-  transparent: true,
-  side: THREE.DoubleSide,
-  depthWrite: false,
-  blending: THREE.AdditiveBlending,
-});
+const LogoMaterial = shaderMaterial(
+  { uTime: 0, uColor: new THREE.Color("#70c1ff") },
+  vertexShaderLogo,
+  fragmentShaderLogo,
+  (material) => {
+    if (material) {
+      material.transparent = true;
+      material.side = THREE.DoubleSide;
+      material.depthWrite = false;
+      material.blending = THREE.AdditiveBlending;
+    }
+  }
+);
 
 extend({ LogoMaterial });
 
@@ -58,7 +59,10 @@ useGLTF.preload("./c2dh_logo.glb");
 const CubeAnnualReport: FC<{ position: [number, number, number] }> = (
   props
 ) => {
-  const { nodes, materials } = useGLTF("/cubeAnnualReport.glb");
+  const { nodes, materials } = useGLTF<{
+    nodes: { Cube: THREE.Mesh; text: THREE.Mesh };
+    materials: { White: THREE.Material };
+  }>("/cubeAnnualReport.glb");
   const logoMaterial = useRef();
   const cubeMaterial = useRef();
 
@@ -80,17 +84,17 @@ const CubeAnnualReport: FC<{ position: [number, number, number] }> = (
   });
 
   return (
-    <group scale={0.5} position={[0, 0, 0]} {...props} dispose={null}>
-      <mesh castShadow geometry={nodes.Cube.geometry}>
+    <group scale={0.5} {...props} dispose={null}>
+      <mesh castShadow geometry={(nodes.Cube as THREE.Mesh).geometry}>
         <logoMaterial ref={cubeMaterial} />
       </mesh>
-      <mesh castShadow geometry={nodes.text.geometry}>
+      <mesh castShadow geometry={(nodes.text as THREE.Mesh).geometry}>
         <logoMaterial ref={logoMaterial} />
       </mesh>
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.text.geometry}
+        geometry={(nodes.text as THREE.Mesh).geometry}
         material={materials.White}
       />
     </group>
@@ -102,7 +106,7 @@ useGLTF.preload("./cubeAnnualReport.glb");
 // Main Canvas Component
 const CanvasViz: FC = () => {
   // Use leva to create a dropdown for selecting the 3D object
-  const { selectedObject, uColor } = useControls({
+  const { selectedObject } = useControls({
     selectedObject: {
       value: "LogoC2dh",
       options: ["LogoC2dh", "CubeAnnualReport"],
@@ -126,7 +130,9 @@ const CanvasViz: FC = () => {
       <directionalLight position={[0, 0, 3]} intensity={9} />
 
       {selectedObject === "LogoC2dh" && <LogoC2dh position={[0, 0, 0]} />}
-      {selectedObject === "CubeAnnualReport" && <CubeAnnualReport />}
+      {selectedObject === "CubeAnnualReport" && (
+        <CubeAnnualReport position={[0, 0, 0]} />
+      )}
       <OrbitControls
         minPolarAngle={Math.PI / 2}
         maxPolarAngle={Math.PI / 2}

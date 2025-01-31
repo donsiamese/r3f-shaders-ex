@@ -7,12 +7,19 @@ import Navigation from "./components/Navigation";
 import Documentation from "./components/Documentation";
 import useGlobalState from "./components/store";
 
+interface GlobalState {
+  showGLSL: boolean;
+  setShowGLSL: (showGLSL: boolean) => void;
+  showTS: boolean;
+  setShowTS: (showTS: boolean) => void;
+}
+
 function App() {
   const [showCoodeMenu, setShowCodeMenu] = useState(false);
   const [showMenu, setMenu] = useState(false);
   const [showDocumentation, setShowDocumentation] = useState(true);
-  const { showGLSL, setShowGLSL } = useGlobalState();
-  const { showTS, setShowTS } = useGlobalState();
+  const { showGLSL, setShowGLSL, showTS, setShowTS } =
+    useGlobalState() as GlobalState;
 
   return (
     <div

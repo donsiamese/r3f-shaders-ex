@@ -1,5 +1,5 @@
-import VertexShader from "./shaders/vertex.glsl";
-import FragmentShader from "./shaders/fragment.glsl";
+import VertexShader from "./shaders/vertex.glsl?raw";
+import FragmentShader from "./shaders/fragment.glsl?raw";
 
 const Code = () => {
   return (
